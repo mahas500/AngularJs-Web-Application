@@ -1,0 +1,12 @@
+https://grandetest.com/theme/prodrive-html/#
+http://cocotemplates.com/html/acropos/
+
+
+https://www.flaticon.com/search?search-type=icons&word=purchase&license=&color=&stroke=&current_section=&author_id=&pack_id=&family_id=&style_id=&category_id=
+
+
+
+1.showing 3 cars text
+2.search functionality
+3.menu bar
+4.on clicking more original page should open

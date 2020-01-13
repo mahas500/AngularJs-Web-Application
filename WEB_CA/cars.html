@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/app.css?9">
+
+
+</head>
+
+<body ng-app="advertApp" ng-controller="myCtrl as lvm">
+    <nav class="navbar">
+        <div>
+            <h1 class="header-logo">MY CARS</h1>
+        </div>
+        <div class="allign-menus-right">
+            <span><a href="index.html">HOME</a></span>
+            <span>ABOUT US</span>
+            <span><a href="cars.html">CARS</a></span>
+        </div>
+    </nav>
+
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/car_page_back.jpg"></div>
+    </div>
+    <div class="filters-button-container">
+        <div class="dropdown-button-container">
+            <button class="drowdown-butoon" ng-click="lvm.showMakeDropdown()">
+                <p>MAKE</p>
+            </button>
+            <div class="dropdown-items-container" id="carMake">
+                <div ng-click="lvm.applyMakeFilter('Mercedes-benz')">Mercedes-benz</div>
+                <div ng-click="lvm.applyMakeFilter('Audi')">Audi</div>
+                <div ng-click="lvm.applyMakeFilter('BMW')">BMW</div>
+                <div ng-click="lvm.applyMakeFilter('Bentley')">Bentley</div>
+            </div>
+        </div>
+
+        <div class="dropdown-button-container">
+            <button class="drowdown-butoon" ng-click="lvm.showYearDropdown()">
+                <p>YEAR</p>
+            </button>
+            <div class="dropdown-items-container" id="carYear">
+                <div ng-click="lvm.applyYearFilter('2019')">2019</div>
+                <div ng-click="lvm.applyYearFilter('2018')">2018</div>
+                <div ng-click="lvm.applyYearFilter('2017')">2017</div>
+            </div>
+        </div>
+
+        <div class="dropdown-button-container">
+            <button class="drowdown-butoon" ng-click="lvm.showPriceDropdown()">
+                <p>PRICE</p>
+            </button>
+            <div class="dropdown-items-container" id="carPrice">
+                <div ng-click="lvm.applyPriceFilter(0,30000)">Low Range Cars</div>
+                <div ng-click="lvm.applyPriceFilter(30000,50000)">Mid Range Cars</div>
+                <div ng-click="lvm.applyPriceFilter(50000,80000)">High Range Cars</div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="cars-container">
+        <div ng-repeat="car in lvm.filtredCars" class="grid-outer-contianer modal-trigger" data-target="modal1">
+            <div ng-click="lvm.showSLiderData(car)">
+                <img ng-src="{{car.images[0]}}" class="grid-iamges">
+
+            </div>
+            <div class="grid-item-data">
+                <p>{{car.make}}</p>
+                <p> {{car.model}}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal custom-modal">
+        <div class="modal-content">
+            <h5 class="txt-align-center">{{lvm.currentCar.make }} {{lvm.currentCar.model}}</h5>
+            <div class="buy-now-buttons-container">
+                <button class="btn waves-effect waves-light" type="button" name="action" ng-click="lvm.showForm()">
+                    BUY NOW
+                </button>
+                <button class="btn waves-effect waves-light" type="button" name="action">
+                    MORE INFO
+                </button>
+            </div>
+            <div id="contactForm" class="contactForm">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="first_name" type="text" class="validate" ng-model="lvm.firstname" required>
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="last_name" type="text" class="validate" ng-model="lvm.lastname" required>
+                                <label for="last_name">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="Email" type="email" class="validate" ng-model="lvm.email" required>
+                                <label for="Email">Email</label>
+                                
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="Contact" type="text" class="validate" ng-model="lvm.contact" required>
+                                <label for="Contact">Contact no</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input disabled id="Car" type="text" class="validate" ng-model="lvm.carName">
+                                <!-- <label for="Car">Car</label> -->
+                            </div>
+                            <div class="input-field col s6">
+                                <input disabled id="Price" type="text" ng-model="lvm.price" class="validate">
+                                <!-- <label for="Price" >Price</label> -->
+                            </div>
+                         </div>
+                         <div class="row">
+                                <div class="input-field col s12">
+                                  <textarea id="Requirements" class="materialize-textarea" ng-model="lvm.requirements" required></textarea>
+                                  <label for="Requirements" >Requirements</label>
+                                </div>
+                         </div>
+                         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <div class="txt-align-center">
+                    <img ng-src="{{lvm.currentCarImage}}" class="slider-image-heght">
+                </div>
+                <div class="icons-grid-flex-cotnainer">
+                    <div ng-repeat="img in lvm.currentCar.images" class="icons-grid">
+                        <img ng-src="{{img}}" class="image-width-100p" ng-click="lvm.changeImage($index)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src='js/app.js?8'></script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('.parallax').parallax();
+        });
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+        $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: true,
+            duration: 2
+        });
+
+    </script>
+
+</body>
+
+</html>

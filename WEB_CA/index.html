@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>CarHub | Buy , Sell or Rent Your Dream Sports car</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/app.css?20">
+
+
+</head>
+
+<body ng-app="advertApp" ng-controller="myCtrl as lvm">
+    <nav class="navbar">
+        <div>
+            <h1 class="header-logo">CarHub</h1>
+        </div>
+        <div class="allign-menus-right">
+            <span><a href="index.html">HOME</a></span>
+            <span><a href="#our-serivces">OUR SERVICES</a></span>
+            <span><a href="#our-cars">CARS</a></span>
+            <span><a href="#about-us">ABOUT US</a></span>
+            
+        </div>
+        <div class="menu-icon" id="menuIcon">
+            <img src="images/menu_white.png">
+        </div>
+        
+    </nav>
+    <div class="mobile-dropdown" id="menuDropdown">
+        <span><a href="index.html">HOME</a></span>
+        <span><a href="#our-serivces">OUR SERVICES</a></span>
+        <span><a href="#our-cars">CARS</a></span>
+        <span><a href="#about-us">ABOUT US</a></span>
+        
+    </div>
+    <div class="main-banner" role="banner">
+        
+        <h3>Buy , Sell or Rent Your Dream Sports car</h3>
+    </div>
+
+    <section class="our-service-section" id="our-serivces">
+        <div class="section-title">
+            <h4>OUR SERVICES</h4>
+        </div>
+        <div class="our-services-grid-flex-container">
+            <div class="our-services-grid-item-container">
+                <div>
+                    <img src="images/service_1.jpg">
+                </div>
+                <div class="our-service-category-text">
+                    <button class="services-button">BUY</button>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. </p>
+                </div>
+            </div>
+            <div class="our-services-grid-item-container">
+                <div>
+                    <img src="images/service_2.jpg">
+                </div>
+                <div class="our-service-category-text">
+                    <button class="services-button">SALE</button>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. </p>
+                </div>
+            </div>
+            <div class="our-services-grid-item-container">
+                <div>
+                    <img src="images/service_3.jpg">
+                </div>
+                <div class="our-service-category-text">
+                    <button class="services-button">RENT</button>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="parallax-container">
+        <div class="parallax"><img src="https://wallpaperaccess.com/full/124036.jpg"></div>
+    </div>
+    <div id="our-cars">
+            <h5 class="txt-align-center ">OUR CARS</h5>
+        <div class="filters-button-container">
+            <div class="dropdown-button-container">
+                <button class="drowdown-butoon" ng-click="lvm.showMakeDropdown()">
+                    <p>MAKE</p>
+                </button>
+                <div class="dropdown-items-container" id="carMake">
+                    <div ng-click="lvm.applyMakeFilter('Mercedes-benz')">Mercedes-benz</div>
+                    <div ng-click="lvm.applyMakeFilter('Audi')">Audi</div>
+                    <div ng-click="lvm.applyMakeFilter('BMW')">BMW</div>
+                    <div ng-click="lvm.applyMakeFilter('Bentley')">Bentley</div>
+                </div>
+            </div>
+
+            <div class="dropdown-button-container">
+                <button class="drowdown-butoon" ng-click="lvm.showYearDropdown()">
+                    <p>YEAR</p>
+                </button>
+                <div class="dropdown-items-container" id="carYear">
+                    <div ng-click="lvm.applyYearFilter('2019')">2019</div>
+                    <div ng-click="lvm.applyYearFilter('2018')">2018</div>
+                    <div ng-click="lvm.applyYearFilter('2017')">2017</div>
+                </div>
+            </div>
+
+            <div class="dropdown-button-container">
+                <button class="drowdown-butoon" ng-click="lvm.showPriceDropdown()">
+                    <p>PRICE</p>
+                </button>
+                <div class="dropdown-items-container" id="carPrice">
+                    <div ng-click="lvm.applyPriceFilter(0,30000)">Low Range Cars</div>
+                    <div ng-click="lvm.applyPriceFilter(30000,50000)">Mid Range Cars</div>
+                    <div ng-click="lvm.applyPriceFilter(50000,80000)">High Range Cars</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="txt-align-center padding-20px">
+        <b>{{lvm.filtredCars.length}} cars found.....</b>
+    </div>
+    <div class="cars-container">
+        <div ng-repeat="car in lvm.filtredCars" class="grid-outer-contianer modal-trigger" data-target="modal1">
+            <div ng-click="lvm.showSLiderData(car)">
+                <img ng-src="{{car.images[0]}}" class="grid-iamges">
+
+            </div>
+            <div class="grid-item-data">
+                <p>{{car.make}}</p>
+                <p> {{car.model}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal custom-modal">
+        <div class="modal-content">
+            <h5 class="txt-align-center">{{lvm.currentCar.make }} {{lvm.currentCar.model}}</h5>
+            <div class="buy-now-buttons-container">
+                <button class="btn waves-effect waves-light" type="button" name="action" ng-click="lvm.showForm()">
+                    BUY NOW
+                </button>
+                <button class="btn waves-effect waves-light" type="button" name="action">
+                    MORE INFO
+                </button>
+            </div>
+            <div id="contactForm" class="contactForm">
+                <div class="row">
+                    <form class="col s12" name="contactForm" novalidate>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input id="first_name" name="first_name" type="text" class="validate" ng-model="lvm.firstname" required>
+                                <label for="first_name">First Name</label>
+                                
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input id="last_name" type="text" class="validate" ng-model="lvm.lastname" required>
+                                <label for="last_name">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input id="Email" type="email" class="validate" ng-model="lvm.email" required>
+                                <label for="Email">Email</label>
+
+                            </div>
+                            <div class="input-field col s12 m6 m6">
+                                <input id="Contact" type="text" class="validate" ng-model="lvm.contact" required>
+                                <label for="Contact">Contact no</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 m6">
+                                <input disabled id="Car" type="text" class="validate" ng-model="lvm.carName">
+
+                            </div>
+                            <div class="input-field col s12 m6">
+                                <input disabled id="Price" type="text" ng-model="lvm.price" class="validate">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12 ">
+                                <textarea id="Requirements" class="materialize-textarea" ng-model="lvm.requirements"
+                                    required></textarea>
+                                <label for="Requirements">Requirements</label>
+                            </div>
+                        </div>
+                        <p class="error-message">{{lvm.errorMessage}}</p>
+                        <button class="btn waves-effect waves-light" type="button" ng-click="lvm.submitForm()" name="action">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <div class="txt-align-center">
+                    <img ng-src="{{lvm.currentCarImage}}" class="slider-image-heght">
+                </div>
+                <div class="icons-grid-flex-cotnainer">
+                    <div ng-repeat="img in lvm.currentCar.images" class="icons-grid">
+                        <img ng-src="{{img}}" class="image-width-100p" ng-click="lvm.changeImage($index)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img
+                src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d69ca927-2e4c-4642-84d0-a05d6bec4387/d8tmlq4-44848339-a004-404b-9b56-065d95f0bcfb.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Q2OWNhOTI3LTJlNGMtNDY0Mi04NGQwLWEwNWQ2YmVjNDM4N1wvZDh0bWxxNC00NDg0ODMzOS1hMDA0LTQwNGItOWI1Ni0wNjVkOTVmMGJjZmIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.JpJJfaeZyL3DE7fWqbvhHUFNAS1IzKQryJAlsSGoTfo">
+        </div>
+    </div>
+    <div class="about-us-container" id="about-us">
+        <div class="txt-align-center ">
+            <h5>ABOUT US</h5>
+        </div>
+        <div class="about-us-flex-container">
+            <div class="about-us-individual-container">
+                <div>
+                    <img src="images/about-us.jpeg">
+                </div>
+
+            </div>
+            <div class="about-us-individual-container">
+                <p>
+                    We provide the services of Car details to our customers. Car companies such as Mercedes-benz, BMW,
+                    Audi, Bentley are associated with us. A customer can visit CARS section of our website and can
+                    filter various cars according to make, model and price. Then a user can also contact us after
+                    selecting BUY NOW option and submitting their details. If customer wants more details about that car
+                    he/she can select MORE INFO option which will redirect them to the official website.
+                    We provide the services of Car details to our customers. Car companies such as Mercedes-benz, BMW,
+                    Audi, Bentley are associated with us.
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="carousel carousel-slider center custom-caraousel" style="height: 400px;">
+
+        <div class="carousel-item  white-text" href="#one!">
+            <div class="testomonial-image-container">
+                <img src="images/testimonial_2.jpg">
+            </div>
+
+            <h2 class="margin-top-0px">Saurabh Devade</h2>
+            <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. </p>
+        </div>
+        <div class="carousel-item  white-text" href="#two!">
+                <div class="testomonial-image-container">
+                        <img src="images/testimonial_3.jpg">
+                    </div>
+        
+                    <h2 class="margin-top-0px">Manik Mahashabde</h2>
+                    <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. </p>
+        </div>
+        <div class="carousel-item  white-text" href="#three!">
+                <div class="testomonial-image-container">
+                        <img src="images/testimonial_4.jpg">
+                    </div>
+        
+                    <h2 class="margin-top-0px">Robert Downey</h2>
+                    <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. </p>
+        </div>
+        <div class="carousel-item  white-text" href="#four!">
+                <div class="testomonial-image-container">
+                        <img src="images/testimonial_1.jpg">
+                    </div>
+        
+                    <h2 class="margin-top-0px">Johnny Depp                        </h2>
+                    <p class="testimonial-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. </p>
+        </div>
+    </div>
+
+    <!-- <button ng-click="lvm.getData()">Get Datas</button>
+    
+    <div>w
+        <div ng-repeat="car in lvm.cars">
+            <p>{{car.manufacturer}}</p>
+        </div>
+    </div> -->
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/angular.js"></script>
+<script src='js/app.js?2'></script>
+<script>
+
+    $(document).ready(function () {
+        $('.parallax').parallax();
+    });
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true,
+        duration: 200
+    });
+//     setInterval(function() {
+//     $('.carousel.carousel-slider').carousel('next');
+//   }, 4000); // every 2 seconds
+
+
+
+</script>
+
+</html>
